@@ -2,6 +2,7 @@ import React from 'react';
 import { ShieldCheck, MapPin, Compass, Phone } from 'lucide-react';
 import { WhatsAppIcon } from './WhatsAppIcon';
 import { COMPANY_INFO } from '../data/fleetData';
+import { selfDriveSedanImg } from '../assets/images';
 
 export const PakistanChauffeurHighlight: React.FC<{ onBookNow: () => void }> = ({ onBookNow }) => {
   return (
@@ -87,7 +88,7 @@ export const PakistanChauffeurHighlight: React.FC<{ onBookNow: () => void }> = (
             <div className="lg:col-span-5 relative">
               <div className="rounded-2xl overflow-hidden border border-[#FACC15]/30 shadow-2xl relative aspect-[4/3] bg-[#220205]">
                 <img
-                  src="/src/assets/images/selfdrive_sedan_showcase_1790352834303.jpg"
+                  src={selfDriveSedanImg}
                   alt="Al Saif Chauffeur Long Distance Pakistan Fleet"
                   referrerPolicy="no-referrer"
                   className="w-full h-full object-cover"

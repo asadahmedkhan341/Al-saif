@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { X, Shield, Plus, Check, Eye, EyeOff, Trash2, Download, FileText, Phone, MessageCircle } from 'lucide-react';
 import { Vehicle, BookingEnquiry, COMPANY_INFO } from '../data/fleetData';
+import { luxurySuvImg, selfDriveSedanImg, executiveBusImg } from '../assets/images';
 
 interface AdminPortalModalProps {
   isOpen: boolean;
@@ -42,16 +43,16 @@ export const AdminPortalModal: React.FC<AdminPortalModalProps> = ({
     let serviceRule: 'With Driver — All Pakistan' | 'Without Driver — Karachi Only' | 'With Driver — All Pakistan & Intercity' =
       'With Driver — All Pakistan';
     let categoryLabel = 'Luxury Cars With Driver';
-    let image = '/src/assets/images/luxury_suv_showcase_1790352822387.jpg';
+    let image = luxurySuvImg;
 
     if (category === 'self-drive') {
       serviceRule = 'Without Driver — Karachi Only';
       categoryLabel = 'Self Drive Cars — Karachi';
-      image = '/src/assets/images/selfdrive_sedan_showcase_1790352834303.jpg';
+      image = selfDriveSedanImg;
     } else if (category === 'bus-transport') {
       serviceRule = 'With Driver — All Pakistan & Intercity';
       categoryLabel = 'Bus & Group Transport';
-      image = '/src/assets/images/executive_bus_transport_1790352847775.jpg';
+      image = executiveBusImg;
     }
 
     const created: Vehicle = {

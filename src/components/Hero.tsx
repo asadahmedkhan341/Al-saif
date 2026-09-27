@@ -1,5 +1,6 @@
 import React from 'react';
 import { ShieldCheck, MapPin } from 'lucide-react';
+import { showroomBg } from '../assets/images';
 
 interface HeroProps {
   onExploreClick?: () => void;
@@ -18,7 +19,7 @@ export const Hero: React.FC<HeroProps> = () => {
       <div className="absolute inset-0 z-0 overflow-hidden">
         {/* Luxury Showroom Photography Background */}
         <img
-          src="/src/assets/images/luxury_showroom_bg_1790378535868.jpg"
+          src={showroomBg}
           alt="Al Saif Luxury Automotive Showroom"
           referrerPolicy="no-referrer"
           className="w-full h-full object-cover object-center scale-105"
