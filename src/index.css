@@ -1,0 +1,196 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    --font-arabic: 'Amiri', 'Noto Naskh Arabic', serif;
+    --color-maroon-deep: #3A0205;
+    --color-maroon-rich: #7F0E17;
+    --color-maroon-bright: #A3121D;
+    --color-gold-yellow: #FACC15;
+    --color-gold-amber: #EAB308;
+  }
+
+  html, body {
+    font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    letter-spacing: -0.01em;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    letter-spacing: -0.025em;
+    font-weight: 700;
+  }
+}
+
+.font-sans-primary,
+.font-display,
+.font-serif-brand {
+  font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  letter-spacing: -0.02em;
+}
+
+.font-arabic {
+  font-family: 'Amiri', 'Noto Naskh Arabic', serif;
+}
+
+/* Brochure-specific gradients and styling */
+.bg-brochure-maroon {
+  background: linear-gradient(160deg, #8E0F1B 0%, #61050D 45%, #2B0105 100%);
+}
+
+.bg-brochure-gradient-radial {
+  background: radial-gradient(ellipse at 50% 20%, #A81321 0%, #680811 50%, #220004 100%);
+}
+
+.text-stroke-brand {
+  -webkit-text-stroke: 0.5px rgba(250, 204, 21, 0.6);
+}
+
+.text-stroke-brochure {
+  -webkit-text-stroke: 1px #1E1B4B;
+  paint-order: stroke fill;
+}
+
+/* Custom keyframes for premium loader & vehicle animations */
+@keyframes spinWheel {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes roadMove {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes carFloat {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-3px);
+  }
+}
+
+@keyframes lightPulse {
+  0%, 100% {
+    opacity: 0.6;
+    filter: drop-shadow(0 0 12px rgba(250, 204, 21, 0.4));
+  }
+  50% {
+    opacity: 0.95;
+    filter: drop-shadow(0 0 25px rgba(250, 204, 21, 0.8));
+  }
+}
+
+@keyframes shimmerStreak {
+  0% {
+    transform: translateX(-150%) skewX(-20deg);
+  }
+  100% {
+    transform: translateX(250%) skewX(-20deg);
+  }
+}
+
+.animate-spin-wheel {
+  animation: spinWheel 0.65s linear infinite;
+}
+
+.animate-road-move {
+  animation: roadMove 1.2s linear infinite;
+}
+
+.animate-car-float {
+  animation: carFloat 2.4s ease-in-out infinite;
+}
+
+.animate-headlight {
+  animation: lightPulse 3s ease-in-out infinite;
+}
+
+@keyframes whatsappPop {
+  0%, 100% {
+    transform: scale(1);
+  }
+  20% {
+    transform: scale(1.08);
+  }
+  32% {
+    transform: scale(0.98);
+  }
+  42% {
+    transform: scale(1.04);
+  }
+  55%, 100% {
+    transform: scale(1);
+  }
+}
+
+.animate-whatsapp-pop {
+  animation: whatsappPop 4.5s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+@keyframes whatsappPingSlow {
+  0% {
+    transform: scale(1);
+    opacity: 0.6;
+  }
+  65%, 100% {
+    transform: scale(1.6);
+    opacity: 0;
+  }
+}
+
+.animate-whatsapp-ping {
+  animation: whatsappPingSlow 4.5s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+
+/* Glassmorphism with brochure luxury maroon hints */
+.glass-panel {
+  background: rgba(22, 6, 9, 0.82);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(250, 204, 21, 0.15);
+}
+
+.glass-panel-elevated {
+  background: linear-gradient(145deg, rgba(38, 8, 13, 0.92) 0%, rgba(18, 3, 6, 0.95) 100%);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(250, 204, 21, 0.3);
+  box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.85);
+}
+
+.glass-panel-red {
+  background: linear-gradient(135deg, rgba(127, 14, 23, 0.25) 0%, rgba(35, 3, 6, 0.6) 100%);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(250, 204, 21, 0.2);
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #140204;
+}
+::-webkit-scrollbar-thumb {
+  background: #5E0C13;
+  border-radius: 4px;
+  border: 1px solid rgba(250, 204, 21, 0.2);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #80121B;
+}

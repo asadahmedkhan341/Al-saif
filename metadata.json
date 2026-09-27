@@ -1,0 +1,7 @@
+{
+  "name": "Al Saif Transport & Rent A Car",
+  "description": "Premium chauffeur-driven vehicles across Pakistan and reliable self-drive car rentals in Karachi.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
+
