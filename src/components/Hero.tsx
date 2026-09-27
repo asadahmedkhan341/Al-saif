@@ -11,7 +11,7 @@ export const Hero: React.FC<HeroProps> = () => {
   return (
     <section
       id="hero"
-      className="relative min-h-[96vh] flex items-center pt-32 sm:pt-36 pb-16 sm:pb-24 overflow-hidden"
+      className="relative flex items-center pt-28 sm:pt-32 pb-8 sm:pb-12 overflow-hidden"
     >
       {/* ========================================================
           BACKGROUND: Luxury Automotive Showroom with Cinematic Scrim
@@ -35,7 +35,7 @@ export const Hero: React.FC<HeroProps> = () => {
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[750px] h-[450px] bg-[radial-gradient(circle,rgba(250,204,21,0.14)_0%,rgba(163,18,29,0.18)_50%,transparent_75%)] blur-[90px] pointer-events-none" />
 
         {/* Bottom smooth fade to next section */}
-        <div className="absolute bottom-0 inset-x-0 h-36 bg-gradient-to-t from-[#110103] to-transparent pointer-events-none" />
+        <div className="absolute bottom-0 inset-x-0 h-20 bg-gradient-to-t from-[#110103] to-transparent pointer-events-none" />
 
         {/* Subtle geometric dot grid overlay */}
         <div
