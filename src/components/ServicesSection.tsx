@@ -87,7 +87,7 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({ onEnquireServi
               </div>
 
               <div className="pt-6 mt-4 border-t border-[#FACC15]/15 flex items-center justify-between">
-                <span className="font-mono text-xs font-bold text-[#FACC15] uppercase tracking-wider">
+                <span className="font-mono text-xs font-bold text-[#FACC15] uppercase tracking-wider amount-on-call-price">
                   Amount on Call
                 </span>
 

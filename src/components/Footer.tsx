@@ -123,7 +123,7 @@ export const Footer: React.FC = () => {
               </div>
               <div className="pt-2 border-t border-[#FACC15]/15 flex items-center justify-between">
                 <span className="text-amber-200/80">Pricing Policy:</span>
-                <span className="font-mono text-[#FACC15] font-bold uppercase text-[11px] tracking-wider">
+                <span className="font-mono text-[#FACC15] font-bold uppercase text-[11px] tracking-wider amount-on-call-price">
                   Amount on Call
                 </span>
               </div>
@@ -165,14 +165,14 @@ export const Footer: React.FC = () => {
 
 
         {/* Bottom Copyright */}
-        <div className="pt-6 flex flex-col sm:flex-row items-center justify-between text-xs text-amber-200/60 gap-3">
+        <div className="pt-6 flex flex-col sm:flex-row items-center justify-between text-xs text-amber-200/60 gap-3 text-center sm:text-left">
           <p>© 2021 Al Saif Transport &amp; Rent A Car. All rights reserved.</p>
-          <div className="flex items-center gap-3 text-[11px]">
+          <div className="flex flex-wrap items-center justify-center sm:justify-end gap-x-3 gap-y-1 text-[11px]">
             <span>Liaquatabad Town, Karachi</span>
             <span aria-hidden="true">•</span>
             <span>All Pakistan Chauffeur Services</span>
             <span aria-hidden="true">•</span>
-            <span className="text-[#FACC15] font-semibold">Amount on Call</span>
+            <span className="text-[#FACC15] font-semibold amount-on-call-price">Amount on Call</span>
           </div>
         </div>
       </div>

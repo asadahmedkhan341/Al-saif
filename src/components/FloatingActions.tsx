@@ -26,7 +26,7 @@ export const FloatingActions: React.FC = () => {
   return (
     <>
       {/* Floating Action Buttons Container (Bottom Right) */}
-      <div className="fixed bottom-5 right-5 z-40 flex flex-col items-end gap-3 pointer-events-none">
+      <div className="fixed bottom-4 right-4 sm:bottom-5 sm:right-5 z-40 flex flex-col items-end gap-3 pointer-events-none">
         {/* Back To Top Button */}
         {showBackToTop && (
           <button
@@ -40,7 +40,7 @@ export const FloatingActions: React.FC = () => {
 
         {/* Quick WhatsApp Tooltip / Bubble */}
         {showChatPopup && (
-          <div className="pointer-events-auto w-72 p-4 rounded-2xl bg-gradient-to-b from-[#2C0307] to-[#150103] border border-[#FACC15]/40 shadow-2xl space-y-3 mb-1 animate-in fade-in slide-in-from-bottom-2 duration-200">
+          <div className="pointer-events-auto w-72 max-w-[calc(100vw-32px)] p-4 rounded-2xl bg-gradient-to-b from-[#2C0307] to-[#150103] border border-[#FACC15]/40 shadow-2xl space-y-3 mb-1 animate-in fade-in slide-in-from-bottom-2 duration-200">
             <div className="flex items-center justify-between pb-2 border-b border-[#FACC15]/20">
               <div className="flex items-center gap-2">
                 <div className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse" />

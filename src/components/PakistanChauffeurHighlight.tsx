@@ -1,8 +1,7 @@
 import React from 'react';
 import { ShieldCheck, MapPin, Compass, Phone } from 'lucide-react';
 import { WhatsAppIcon } from './WhatsAppIcon';
-import { COMPANY_INFO } from '../data/fleetData';
-import { selfDriveSedanImg } from '../assets/images';
+import { COMPANY_INFO, getFleetImageUrl } from '../data/fleetData';
 
 export const PakistanChauffeurHighlight: React.FC<{ onBookNow: () => void }> = ({ onBookNow }) => {
   return (
@@ -11,8 +10,8 @@ export const PakistanChauffeurHighlight: React.FC<{ onBookNow: () => void }> = (
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[350px] bg-[#991B1B]/15 blur-[120px] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="rounded-3xl bg-gradient-to-br from-[#380409] via-[#240306] to-[#120103] border border-[#FACC15]/35 p-8 sm:p-12 lg:p-16 shadow-[0_25px_60px_rgba(0,0,0,0.9)]">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+        <div className="rounded-3xl bg-gradient-to-br from-[#380409] via-[#240306] to-[#120103] border border-[#FACC15]/35 p-5 sm:p-12 lg:p-16 shadow-[0_25px_60px_rgba(0,0,0,0.9)]">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 sm:gap-10 items-center">
             {/* Left Column: Pakistan-Wide Chauffeur Service */}
             <div className="lg:col-span-7 space-y-6">
               <div className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-[#FACC15]">
@@ -54,10 +53,10 @@ export const PakistanChauffeurHighlight: React.FC<{ onBookNow: () => void }> = (
               </div>
 
               {/* CTAs */}
-              <div className="flex flex-wrap items-center gap-3 pt-3">
+              <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 pt-3">
                 <button
                   onClick={onBookNow}
-                  className="px-6 py-3 rounded-xl bg-gradient-to-r from-[#FACC15] to-[#EAB308] text-black font-bold uppercase tracking-wider text-xs hover:brightness-110 transition-all shadow-md active:scale-95"
+                  className="w-full sm:w-auto px-6 py-3.5 sm:py-3 rounded-xl bg-gradient-to-r from-[#FACC15] to-[#EAB308] text-black font-bold uppercase tracking-wider text-xs hover:brightness-110 transition-all shadow-md active:scale-95 text-center flex items-center justify-center"
                 >
                   Schedule Chauffeur Journey
                 </button>
@@ -68,7 +67,7 @@ export const PakistanChauffeurHighlight: React.FC<{ onBookNow: () => void }> = (
                   )}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="px-5 py-3 rounded-xl bg-[#25D366] text-black font-bold text-xs hover:brightness-105 transition-all flex items-center gap-2 shadow-sm"
+                  className="w-full sm:w-auto px-5 py-3 rounded-xl bg-[#25D366] text-black font-bold text-xs hover:brightness-105 transition-all flex items-center justify-center gap-2 shadow-sm"
                 >
                   <WhatsAppIcon className="w-4 h-4 text-black" />
                   <span>WhatsApp Coordination</span>
@@ -76,7 +75,7 @@ export const PakistanChauffeurHighlight: React.FC<{ onBookNow: () => void }> = (
 
                 <a
                   href={`tel:${COMPANY_INFO.phone}`}
-                  className="px-4 py-3 rounded-xl text-xs font-bold text-amber-200 hover:text-white flex items-center gap-2 transition-colors"
+                  className="w-full sm:w-auto px-4 py-3 rounded-xl text-xs font-bold text-amber-200 hover:text-white flex items-center justify-center gap-2 transition-colors border border-[#FACC15]/20 sm:border-transparent rounded-xl"
                 >
                   <Phone className="w-4 h-4 text-[#FACC15]" />
                   <span>Call {COMPANY_INFO.phoneDisplay}</span>
@@ -87,26 +86,19 @@ export const PakistanChauffeurHighlight: React.FC<{ onBookNow: () => void }> = (
             {/* Right Column: Visual Showcase */}
             <div className="lg:col-span-5 relative">
               <div className="rounded-2xl overflow-hidden border border-[#FACC15]/30 shadow-2xl relative aspect-[4/3] bg-[#220205]">
-                <img
-                  src={selfDriveSedanImg}
-                  alt="Al Saif Chauffeur Long Distance Pakistan Fleet"
-                  referrerPolicy="no-referrer"
-                  className="w-full h-full object-cover"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#200205] via-transparent to-black/30" />
-                <div className="absolute bottom-4 left-4 right-4 p-4 rounded-xl bg-[#2E0307]/95 border border-[#FACC15]/30 backdrop-blur-sm">
-                  <div className="flex items-center justify-between">
-                    <div>
-                      <span className="text-[10px] text-[#FACC15] uppercase font-bold tracking-wider">
-                        Intercity Fleet
-                      </span>
-                      <h4 className="text-white text-sm font-bold">Toyota Fortuner &amp; Land Cruiser</h4>
-                    </div>
-                    <span className="text-xs font-mono text-[#FACC15] font-bold uppercase">
-                      Amount on Call
-                    </span>
-                  </div>
-                </div>
+                {/* On mobile (< 768px): Showroom image. On desktop (>= 768px): existing desktop image LC_300.jpg */}
+                <picture>
+                  <source
+                    media="(max-width: 767px)"
+                    srcSet={getFleetImageUrl('Showroom image', 'Showroom.jpg')}
+                  />
+                  <img
+                    src={getFleetImageUrl('With Driver', 'LC_300.jpg')}
+                    alt="Al Saif Chauffeur Long Distance Pakistan Fleet"
+                    referrerPolicy="no-referrer"
+                    className="w-full h-full object-cover"
+                  />
+                </picture>
               </div>
             </div>
           </div>

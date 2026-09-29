@@ -2,6 +2,7 @@ import React from 'react';
 import { X, Phone, ShieldCheck, MapPin, Users, Gauge, Wind, Calendar, Check, ArrowRight } from 'lucide-react';
 import { Vehicle, COMPANY_INFO } from '../data/fleetData';
 import { WhatsAppIcon } from './WhatsAppIcon';
+import { useLanguage } from '../context/LanguageContext';
 
 interface VehicleDetailModalProps {
   vehicle: Vehicle | null;
@@ -10,9 +11,12 @@ interface VehicleDetailModalProps {
 }
 
 export const VehicleDetailModal: React.FC<VehicleDetailModalProps> = ({ vehicle, onClose, onBookNow }) => {
+  const { t, isUrdu } = useLanguage();
   if (!vehicle) return null;
 
-  const whatsappMessage = `Hello Al Saif Transport & Rent A Car, I am interested in the ${vehicle.name}. Please share availability and quotation.`;
+  const whatsappMessage = isUrdu
+    ? `السلام علیکم! السیف ٹرانسپورٹ اینڈ رینٹ اے کار، میں ${vehicle.name} میں دلچسپی رکھتا ہوں۔ براہِ کرم دستیابی اور کوٹیشن شیئر کریں۔`
+    : `Hello Al Saif Transport & Rent A Car, I am interested in the ${vehicle.name}. Please share availability and quotation.`;
   const whatsappUrl = `https://wa.me/${COMPANY_INFO.whatsappClean}?text=${encodeURIComponent(whatsappMessage)}`;
 
   return (
@@ -55,7 +59,7 @@ export const VehicleDetailModal: React.FC<VehicleDetailModalProps> = ({ vehicle,
         </div>
 
         {/* Modal Body */}
-        <div className="p-6 sm:p-8 space-y-6">
+        <div className="p-4 sm:p-8 space-y-6">
           {/* Key Rule & Coverage Alert */}
           <div className="p-4 rounded-xl bg-[#3E050B] border border-[#FACC15]/40 flex flex-col sm:flex-row sm:items-center justify-between gap-3 shadow-md">
             <div>
@@ -66,15 +70,17 @@ export const VehicleDetailModal: React.FC<VehicleDetailModalProps> = ({ vehicle,
                 </span>
               </div>
               <p className="text-xs text-amber-100/80 mt-1">
-                {vehicle.category === 'luxury' && 'Available with professional chauffeur across all Pakistan routes.'}
-                {vehicle.category === 'self-drive' && 'Self-drive service without driver. Strictly Karachi coverage only.'}
-                {vehicle.category === 'bus-transport' && 'Available for corporate, tours, events, and group travel.'}
+                {vehicle.category === 'luxury' && t('ruleNoticeLuxury')}
+                {vehicle.category === 'self-drive' && t('ruleNoticeSelfDrive')}
+                {vehicle.category === 'bus-transport' && t('ruleNoticeBuses')}
               </p>
             </div>
             <div className="text-left sm:text-right shrink-0">
-              <span className="text-[10px] text-amber-200 uppercase font-bold tracking-wider block">Official Rate</span>
-              <span className="font-mono text-base font-bold text-[#FACC15] uppercase tracking-wide">
-                Amount on Call
+              <span className="text-[10px] text-amber-200 uppercase font-bold tracking-wider block">
+                {isUrdu ? 'سرکاری ریٹ' : 'Official Rate'}
+              </span>
+              <span className="font-mono text-xs sm:text-[13px] font-bold text-[#FACC15] uppercase tracking-wide font-arabic amount-on-call-price">
+                {t('amountOnCall')}
               </span>
             </div>
           </div>
@@ -82,24 +88,26 @@ export const VehicleDetailModal: React.FC<VehicleDetailModalProps> = ({ vehicle,
           {/* Genuine Vehicle Specs */}
           <div>
             <h4 className="text-xs font-bold uppercase tracking-wider text-[#FACC15] mb-3">
-              Fleet Specifications
+              {t('fleetSpecs')}
             </h4>
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
               <div className="p-3 rounded-lg bg-[#1E0205] border border-[#FACC15]/20">
-                <span className="text-[10px] text-amber-200/70 block uppercase font-bold">Category</span>
+                <span className="text-[10px] text-amber-200/70 block uppercase font-bold">{t('categoryLabel')}</span>
                 <span className="text-xs font-bold text-white">{vehicle.vehicleType}</span>
               </div>
               <div className="p-3 rounded-lg bg-[#1E0205] border border-[#FACC15]/20">
-                <span className="text-[10px] text-amber-200/70 block uppercase font-bold">Seating</span>
-                <span className="text-xs font-bold text-white">{vehicle.seatingCapacity || 'Available on enquiry'}</span>
+                <span className="text-[10px] text-amber-200/70 block uppercase font-bold">{t('seatingLabel')}</span>
+                <span className="text-xs font-bold text-white">{vehicle.seatingCapacity || (isUrdu ? 'کال پر دستیاب' : 'Available on enquiry')}</span>
               </div>
               <div className="p-3 rounded-lg bg-[#1E0205] border border-[#FACC15]/20">
-                <span className="text-[10px] text-amber-200/70 block uppercase font-bold">Transmission</span>
-                <span className="text-xs font-bold text-white">{vehicle.transmission || 'Available on enquiry'}</span>
+                <span className="text-[10px] text-amber-200/70 block uppercase font-bold">{t('transmissionLabel')}</span>
+                <span className="text-xs font-bold text-white">
+                  {vehicle.transmission === 'Automatic' ? t('automaticTransmission') : (vehicle.transmission === 'Manual' ? t('manualTransmission') : vehicle.transmission)}
+                </span>
               </div>
               <div className="p-3 rounded-lg bg-[#1E0205] border border-[#FACC15]/20">
-                <span className="text-[10px] text-amber-200/70 block uppercase font-bold">Climate Control</span>
-                <span className="text-xs font-bold text-white">{vehicle.acStatus || 'Available on enquiry'}</span>
+                <span className="text-[10px] text-amber-200/70 block uppercase font-bold">{t('climateLabel')}</span>
+                <span className="text-xs font-bold text-white">{vehicle.acStatus || (isUrdu ? 'کال پر دستیاب' : 'Available on enquiry')}</span>
               </div>
             </div>
           </div>
@@ -107,7 +115,7 @@ export const VehicleDetailModal: React.FC<VehicleDetailModalProps> = ({ vehicle,
           {/* Key Features */}
           <div>
             <h4 className="text-xs font-bold uppercase tracking-wider text-[#FACC15] mb-2.5">
-              Included Standards
+              {t('includedFeatures')}
             </h4>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs text-zinc-200">
               {vehicle.features.map((feature, idx) => (
@@ -127,7 +135,7 @@ export const VehicleDetailModal: React.FC<VehicleDetailModalProps> = ({ vehicle,
           {/* Action Triggers */}
           <div className="pt-4 flex flex-col sm:flex-row items-center justify-between gap-3 border-t border-[#FACC15]/20">
             <div className="flex items-center gap-2 text-xs text-amber-200/90 font-medium">
-              <span>24/7 Helpline:</span>
+              <span>{t('helpline247')}:</span>
               <a href={`tel:${COMPANY_INFO.phone}`} className="font-mono text-white font-bold hover:underline">
                 {COMPANY_INFO.phoneDisplay}
               </a>
@@ -141,7 +149,7 @@ export const VehicleDetailModal: React.FC<VehicleDetailModalProps> = ({ vehicle,
                 className="py-2.5 px-4 rounded-xl bg-[#25D366] text-black font-bold text-xs hover:brightness-105 transition-all flex items-center justify-center gap-2 flex-1 sm:flex-initial shadow-md"
               >
                 <WhatsAppIcon className="w-4 h-4 text-black" />
-                <span>WhatsApp Quote</span>
+                <span>{isUrdu ? 'واٹس ایپ کوٹیشن' : 'WhatsApp Quote'}</span>
               </a>
 
               <a
@@ -149,7 +157,7 @@ export const VehicleDetailModal: React.FC<VehicleDetailModalProps> = ({ vehicle,
                 className="py-2.5 px-4 rounded-xl border border-[#FACC15]/40 bg-[#42060C] hover:bg-[#5C0912] text-white text-xs font-bold transition-colors flex items-center justify-center gap-2 flex-1 sm:flex-initial"
               >
                 <Phone className="w-4 h-4 text-[#FACC15]" />
-                <span>Call Now</span>
+                <span>{t('callNowBtn')}</span>
               </a>
 
               <button
@@ -159,7 +167,7 @@ export const VehicleDetailModal: React.FC<VehicleDetailModalProps> = ({ vehicle,
                 }}
                 className="py-2.5 px-5 rounded-xl bg-gradient-to-r from-[#FACC15] to-[#EAB308] text-black font-bold text-xs hover:brightness-110 shadow-md transition-all flex items-center justify-center gap-1.5 flex-1 sm:flex-initial"
               >
-                <span>Book This Car</span>
+                <span>{isUrdu ? 'گاڑی بک کریں' : 'Book This Car'}</span>
                 <ArrowRight className="w-3.5 h-3.5 stroke-[2.5]" />
               </button>
             </div>

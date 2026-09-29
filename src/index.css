@@ -16,12 +16,40 @@
     letter-spacing: -0.01em;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+    width: 100%;
+    max-width: 100vw;
   }
 
   h1, h2, h3, h4, h5, h6 {
     font-family: 'Plus Jakarta Sans', sans-serif;
     letter-spacing: -0.025em;
     font-weight: 700;
+  }
+}
+
+/* Pricing font: Monospaced pricing font on desktop, Arial on mobile screens (< 768px) */
+.amount-on-call-price {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  font-size: 11.5px !important;
+}
+
+@media (min-width: 768px) {
+  .amount-on-call-price {
+    font-size: 11.5px !important;
+    letter-spacing: 0.03em;
+  }
+}
+
+@media (max-width: 767px) {
+  .amount-on-call-price {
+    font-family: Arial, -apple-system, BlinkMacSystemFont, sans-serif !important;
+    font-size: 10.5px !important;
+    letter-spacing: normal !important;
+    line-height: 1.25 !important;
+    font-weight: 700 !important;
   }
 }
 
@@ -34,6 +62,11 @@
 
 .font-arabic {
   font-family: 'Amiri', 'Noto Naskh Arabic', serif;
+}
+
+.font-urdu,
+[dir="rtl"] {
+  font-family: 'Noto Nastaliq Urdu', 'Amiri', 'Noto Naskh Arabic', -apple-system, BlinkMacSystemFont, sans-serif;
 }
 
 /* Brochure-specific gradients and styling */

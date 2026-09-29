@@ -329,15 +329,15 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ onSuccessEnquiry
                   <div className="pt-2 flex flex-col sm:flex-row items-center justify-between gap-4">
                     <div className="text-xs text-amber-200/80">
                       <span>Rate Policy: </span>
-                      <strong className="text-[#FACC15] font-mono uppercase ml-1">Amount on Call</strong>
+                      <strong className="text-[#FACC15] font-mono uppercase ml-1 amount-on-call-price">Amount on Call</strong>
                     </div>
 
-                    <div className="flex items-center gap-3 w-full sm:w-auto">
+                    <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 w-full sm:w-auto">
                       <a
                         href={whatsappUrl}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="px-4 py-2.5 rounded-xl border border-[#25D366]/40 bg-[#25D366]/15 hover:bg-[#25D366]/25 text-[#25D366] text-xs font-bold uppercase transition-all flex items-center justify-center gap-1.5 flex-1 sm:flex-initial"
+                        className="w-full sm:w-auto px-4 py-2.5 rounded-xl border border-[#25D366]/40 bg-[#25D366]/15 hover:bg-[#25D366]/25 text-[#25D366] text-xs font-bold uppercase transition-all flex items-center justify-center gap-1.5"
                       >
                         <WhatsAppIcon className="w-4 h-4" />
                         <span>WhatsApp</span>
@@ -345,7 +345,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ onSuccessEnquiry
 
                       <button
                         type="submit"
-                        className="px-6 py-2.5 rounded-xl bg-gradient-to-r from-[#FACC15] via-[#FDE047] to-[#EAB308] text-black text-xs font-bold uppercase tracking-wider hover:brightness-110 shadow-lg transition-all flex items-center justify-center gap-2 flex-1 sm:flex-initial active:scale-95"
+                        className="w-full sm:w-auto px-6 py-2.5 rounded-xl bg-gradient-to-r from-[#FACC15] via-[#FDE047] to-[#EAB308] text-black text-xs font-bold uppercase tracking-wider hover:brightness-110 shadow-lg transition-all flex items-center justify-center gap-2 active:scale-95"
                       >
                         <Send className="w-4 h-4 stroke-[2.5]" />
                         <span>Send Message</span>

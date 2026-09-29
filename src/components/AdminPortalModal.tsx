@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { X, Shield, Plus, Check, Eye, EyeOff, Trash2, Download, FileText, Phone, MessageCircle } from 'lucide-react';
-import { Vehicle, BookingEnquiry, COMPANY_INFO } from '../data/fleetData';
-import { luxurySuvImg, selfDriveSedanImg, executiveBusImg } from '../assets/images';
+import { Vehicle, BookingEnquiry, COMPANY_INFO, getFleetImageUrl } from '../data/fleetData';
 
 interface AdminPortalModalProps {
   isOpen: boolean;
@@ -43,16 +42,16 @@ export const AdminPortalModal: React.FC<AdminPortalModalProps> = ({
     let serviceRule: 'With Driver — All Pakistan' | 'Without Driver — Karachi Only' | 'With Driver — All Pakistan & Intercity' =
       'With Driver — All Pakistan';
     let categoryLabel = 'Luxury Cars With Driver';
-    let image = luxurySuvImg;
+    let image = getFleetImageUrl('With Driver', 'LC_300.jpg');
 
     if (category === 'self-drive') {
       serviceRule = 'Without Driver — Karachi Only';
       categoryLabel = 'Self Drive Cars — Karachi';
-      image = selfDriveSedanImg;
+      image = getFleetImageUrl('Karachi Only (Self)', 'Corolla_new.jpg');
     } else if (category === 'bus-transport') {
-      serviceRule = 'With Driver — All Pakistan & Intercity';
-      categoryLabel = 'Bus & Group Transport';
-      image = executiveBusImg;
+      serviceRule = 'With Driver — All Pakistan';
+      categoryLabel = 'Buses & Coasters — With Driver';
+      image = getFleetImageUrl('Buses & Coasters', 'Yutong_55_seater_A_C.jpg');
     }
 
     const created: Vehicle = {
@@ -273,7 +272,7 @@ export const AdminPortalModal: React.FC<AdminPortalModalProps> = ({
                   </div>
 
                   <div className="flex items-center gap-3">
-                    <span className="font-mono text-[#E5C378] text-[11px]">Amount on Call</span>
+                    <span className="font-mono text-[#E5C378] text-[11px] amount-on-call-price">Amount on Call</span>
                     <button
                       onClick={() => onDeleteVehicle(v.id)}
                       className="p-1.5 rounded text-neutral-500 hover:text-red-400 transition-colors"

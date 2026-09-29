@@ -2,6 +2,7 @@ import React from 'react';
 import { Shield, MapPin, Users, Gauge, Wind, Check } from 'lucide-react';
 import { Vehicle, COMPANY_INFO } from '../data/fleetData';
 import { WhatsAppIcon } from './WhatsAppIcon';
+import { useLanguage } from '../context/LanguageContext';
 
 interface VehicleCardProps {
   vehicle: Vehicle;
@@ -10,11 +11,14 @@ interface VehicleCardProps {
 }
 
 export const VehicleCard: React.FC<VehicleCardProps> = ({ vehicle, onSelect, onBookDirect }) => {
+  const { t, isUrdu } = useLanguage();
   const isLuxury = vehicle.category === 'luxury';
   const isSelfDrive = vehicle.category === 'self-drive';
   const isBus = vehicle.category === 'bus-transport';
 
-  const whatsappMessage = `Hello Al Saif Transport & Rent A Car, I am interested in the ${vehicle.name}. Please share availability and quotation.`;
+  const whatsappMessage = isUrdu
+    ? `السلام علیکم! السیف ٹرانسپورٹ اینڈ رینٹ اے کار، مجھے ${vehicle.name} کی دستیابی اور کرایہ کے بارے میں معلومات چاہیے۔`
+    : `Hello Al Saif Transport & Rent A Car, I am interested in the ${vehicle.name}. Please share availability and quotation.`;
   const whatsappUrl = `https://wa.me/${COMPANY_INFO.whatsappClean}?text=${encodeURIComponent(whatsappMessage)}`;
 
   return (
@@ -23,7 +27,7 @@ export const VehicleCard: React.FC<VehicleCardProps> = ({ vehicle, onSelect, onB
       <div 
         onClick={() => onSelect?.(vehicle)}
         className="relative aspect-[16/10] overflow-hidden bg-[#1D0205] cursor-pointer"
-        title={`View details for ${vehicle.name}`}
+        title={isUrdu ? `${vehicle.name} کی تفصیلات دیکھیں` : `View details for ${vehicle.name}`}
       >
         <img
           src={vehicle.image}
@@ -41,33 +45,33 @@ export const VehicleCard: React.FC<VehicleCardProps> = ({ vehicle, onSelect, onB
           {isLuxury && (
             <span className="text-[#FACC15] flex items-center gap-1">
               <Shield className="w-3 h-3 text-[#FACC15]" />
-              Luxury Chauffeur
+              {t('luxuryChauffeurBadge')}
             </span>
           )}
           {isSelfDrive && (
             <span className="text-white flex items-center gap-1">
               <MapPin className="w-3 h-3 text-[#FACC15]" />
-              Self Drive
+              {t('selfDriveBadge')}
             </span>
           )}
           {isBus && (
             <span className="text-amber-200 flex items-center gap-1">
               <Users className="w-3 h-3 text-[#FACC15]" />
-              Group Transport
+              {t('groupTransportBadge')}
             </span>
           )}
         </div>
 
         {/* Coverage Tag */}
         <div className="absolute bottom-2.5 left-3 text-[11px] font-semibold tracking-tight text-amber-200 drop-shadow">
-          {isLuxury && 'With Driver (All Pakistan)'}
-          {isSelfDrive && 'Karachi Only (Self)'}
-          {isBus && 'With Driver (Intercity & Nationwide)'}
+          {isLuxury && t('withDriverPakTag')}
+          {isSelfDrive && t('karachiOnlyTag')}
+          {isBus && t('withDriverPakTag')}
         </div>
       </div>
 
       {/* Card Content Body */}
-      <div className="p-5 flex-1 flex flex-col justify-between">
+      <div className="p-4 sm:p-5 flex-1 flex flex-col justify-between">
         <div>
           {/* Vehicle Name and Type */}
           <div className="mb-2">
@@ -76,7 +80,7 @@ export const VehicleCard: React.FC<VehicleCardProps> = ({ vehicle, onSelect, onB
             </span>
             <h3 
               onClick={() => onSelect?.(vehicle)}
-              className="font-display text-lg font-bold text-white group-hover:text-[#FACC15] transition-colors leading-snug cursor-pointer"
+              className="font-display text-base sm:text-lg font-bold text-white group-hover:text-[#FACC15] transition-colors leading-snug cursor-pointer break-words"
               title={`View details for ${vehicle.name}`}
             >
               {vehicle.name}
@@ -90,36 +94,38 @@ export const VehicleCard: React.FC<VehicleCardProps> = ({ vehicle, onSelect, onB
           {/* Genuine Specs List (only non-fabricated data) */}
           <div className="grid grid-cols-2 gap-2 text-xs py-2 border-y border-[#FACC15]/15 text-neutral-200 mb-4">
             {vehicle.seatingCapacity && (
-              <div className="flex items-center gap-1.5">
+              <div className="flex items-center gap-1.5 min-w-0">
                 <Users className="w-3.5 h-3.5 text-[#FACC15] shrink-0" />
-                <span>{vehicle.seatingCapacity}</span>
+                <span className="truncate">{vehicle.seatingCapacity}</span>
               </div>
             )}
             {vehicle.transmission && (
-              <div className="flex items-center gap-1.5">
+              <div className="flex items-center gap-1.5 min-w-0">
                 <Gauge className="w-3.5 h-3.5 text-[#FACC15] shrink-0" />
-                <span>{vehicle.transmission}</span>
+                <span className="truncate">{vehicle.transmission}</span>
               </div>
             )}
             {vehicle.acStatus && (
-              <div className="flex items-center gap-1.5">
+              <div className="flex items-center gap-1.5 min-w-0">
                 <Wind className="w-3.5 h-3.5 text-[#FACC15] shrink-0" />
-                <span>{vehicle.acStatus}</span>
+                <span className="truncate">{vehicle.acStatus}</span>
               </div>
             )}
-            <div className="flex items-center gap-1.5">
+            <div className="flex items-center gap-1.5 min-w-0">
               <Check className="w-3.5 h-3.5 text-[#FACC15] shrink-0" />
-              <span>Verified Fleet</span>
+              <span className="truncate">{isUrdu ? 'تصدیق شدہ فلیٹ' : 'Verified Fleet'}</span>
             </div>
           </div>
         </div>
 
         {/* Footer Area: Pricing + Centered WhatsApp CTA */}
         <div className="pt-2 space-y-3">
-          <div className="flex items-baseline justify-between">
-            <span className="text-[11px] text-amber-200/70 uppercase tracking-wider font-semibold">Pricing</span>
-            <span className="font-mono text-sm font-bold text-[#FACC15] tracking-wider uppercase">
-              {vehicle.pricing}
+          <div className="flex items-baseline justify-between gap-2">
+            <span className="text-[11px] text-amber-200/70 uppercase tracking-wider font-semibold shrink-0">
+              {isUrdu ? 'سرکاری ریٹ' : 'Pricing'}
+            </span>
+            <span className="font-mono text-xs font-bold text-[#FACC15] tracking-wider uppercase font-arabic amount-on-call-price text-right">
+              {t('amountOnCall')}
             </span>
           </div>
 
@@ -130,10 +136,10 @@ export const VehicleCard: React.FC<VehicleCardProps> = ({ vehicle, onSelect, onB
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center justify-center gap-1.5 px-4 py-1.5 rounded-full bg-[#25D366] hover:bg-[#20ba5a] text-black font-bold text-xs transition-all duration-200 shadow-[0_2px_10px_rgba(37,211,102,0.3)] hover:scale-105 active:scale-95"
-              title={`WhatsApp enquiry for ${vehicle.name}`}
+              title={isUrdu ? `${vehicle.name} کے لیے واٹس ایپ رابطہ` : `WhatsApp enquiry for ${vehicle.name}`}
             >
               <WhatsAppIcon className="w-3.5 h-3.5 text-black shrink-0" />
-              <span>WhatsApp</span>
+              <span>{isUrdu ? 'واٹس ایپ رابطہ' : 'WhatsApp'}</span>
             </a>
           </div>
         </div>

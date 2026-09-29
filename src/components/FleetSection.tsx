@@ -8,6 +8,7 @@ import {
   COMPANY_INFO,
 } from '../data/fleetData';
 import { VehicleCard } from './VehicleCard';
+import { useLanguage } from '../context/LanguageContext';
 
 interface FleetSectionProps {
   onSelectVehicle: (vehicle: Vehicle) => void;
@@ -15,6 +16,8 @@ interface FleetSectionProps {
 }
 
 export const FleetSection: React.FC<FleetSectionProps> = ({ onSelectVehicle, onBookDirect }) => {
+  const { t, isUrdu } = useLanguage();
+
   return (
     <section id="fleet" className="pt-10 sm:pt-14 pb-20 bg-gradient-to-b from-[#110103] via-[#1E0206] to-[#120104] relative">
       {/* Decorative ambient background glows */}
@@ -26,15 +29,15 @@ export const FleetSection: React.FC<FleetSectionProps> = ({ onSelectVehicle, onB
         <div className="text-center max-w-3xl mx-auto mb-14">
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#3B040A] border border-[#FACC15]/40 text-[#FACC15] text-xs font-bold tracking-wider uppercase mb-3 shadow-[0_0_15px_rgba(250,204,21,0.2)]">
             <Sparkles className="w-3.5 h-3.5" />
-            <span>Al Saif Premier Fleet</span>
+            <span>{t('fleetSectionBadge')}</span>
           </div>
 
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight">
-            Explore Our <span className="text-[#FACC15]">Signature Fleet</span>
+            {t('fleetSectionTitle')}
           </h2>
 
           <p className="mt-4 text-neutral-300 text-sm sm:text-base leading-relaxed">
-            Browse our vehicle catalog organized by service category — executive chauffeur-driven SUVs for all Pakistan, self-drive rentals for Karachi, and high-capacity luxury buses.
+            {t('fleetSectionSubtitle')}
           </p>
 
           {/* Quick Category Jump Links */}
@@ -44,7 +47,7 @@ export const FleetSection: React.FC<FleetSectionProps> = ({ onSelectVehicle, onB
               className="px-4 py-2 rounded-xl bg-[#2A0307] hover:bg-[#3D050B] border border-[#FACC15]/30 text-xs font-bold text-amber-200 hover:text-white transition-all flex items-center gap-2 shadow-sm"
             >
               <Shield className="w-3.5 h-3.5 text-[#FACC15]" />
-              <span>Luxury Fleet (With Driver)</span>
+              <span>{t('jumpLuxury')}</span>
               <ArrowDown className="w-3 h-3 text-[#FACC15]/70" />
             </a>
             <a
@@ -52,7 +55,7 @@ export const FleetSection: React.FC<FleetSectionProps> = ({ onSelectVehicle, onB
               className="px-4 py-2 rounded-xl bg-[#2A0307] hover:bg-[#3D050B] border border-[#FACC15]/30 text-xs font-bold text-amber-200 hover:text-white transition-all flex items-center gap-2 shadow-sm"
             >
               <MapPin className="w-3.5 h-3.5 text-[#FACC15]" />
-              <span>Self-Drive Fleet (Karachi Only)</span>
+              <span>{t('jumpSelfDrive')}</span>
               <ArrowDown className="w-3 h-3 text-[#FACC15]/70" />
             </a>
             <a
@@ -60,7 +63,7 @@ export const FleetSection: React.FC<FleetSectionProps> = ({ onSelectVehicle, onB
               className="px-4 py-2 rounded-xl bg-[#2A0307] hover:bg-[#3D050B] border border-[#FACC15]/30 text-xs font-bold text-amber-200 hover:text-white transition-all flex items-center gap-2 shadow-sm"
             >
               <Users className="w-3.5 h-3.5 text-[#FACC15]" />
-              <span>Buses &amp; Coasters (Nationwide)</span>
+              <span>{t('jumpBuses')}</span>
               <ArrowDown className="w-3 h-3 text-[#FACC15]/70" />
             </a>
           </div>
@@ -71,23 +74,23 @@ export const FleetSection: React.FC<FleetSectionProps> = ({ onSelectVehicle, onB
         {/* ========================================================================= */}
         <div id="fleet-luxury" className="pt-8 mb-20 scroll-mt-24">
           {/* Category Banner / Header */}
-          <div className="p-6 sm:p-8 rounded-3xl bg-gradient-to-r from-[#2B0408] via-[#38060C] to-[#1E0206] border border-[#FACC15]/30 shadow-xl mb-10 flex flex-col md:flex-row md:items-center justify-between gap-6">
+          <div className="p-5 sm:p-8 rounded-3xl bg-gradient-to-r from-[#2B0408] via-[#38060C] to-[#1E0206] border border-[#FACC15]/30 shadow-xl mb-10 flex flex-col md:flex-row md:items-center justify-between gap-6">
             <div className="space-y-2">
               <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#180104] border border-[#FACC15]/40 text-[#FACC15] text-xs font-extrabold uppercase tracking-wide">
                 <Shield className="w-3.5 h-3.5 text-[#FACC15]" />
-                <span>Luxury Fleet</span>
+                <span>{t('catLuxuryTitle')}</span>
               </div>
-              <h3 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
-                Luxury Fleet: <span className="text-[#FACC15]">With Driver (All Pakistan)</span>
+              <h3 className="text-xl sm:text-3xl font-extrabold text-white tracking-tight">
+                {t('catLuxuryTitle')} <span className="text-[#FACC15]">{t('catLuxuryTitleHighlight')}</span>
               </h3>
               <p className="text-xs sm:text-sm text-neutral-300 max-w-2xl leading-relaxed">
-                Flagship luxury SUVs and executive limousines accompanied by professional, uniformed chauffeurs. Available for diplomatic escorts, corporate delegations, weddings, and intercity journeys across all Pakistan provinces.
+                {t('catLuxuryDesc')}
               </p>
             </div>
 
             <div className="flex items-center gap-3 shrink-0">
               <span className="px-3.5 py-1.5 rounded-xl bg-[#140103] border border-[#FACC15]/30 text-amber-200 text-xs font-bold font-mono">
-                {LUXURY_VEHICLES.length} Luxury Models
+                {t('catLuxuryCount')}
               </span>
             </div>
           </div>
@@ -113,23 +116,23 @@ export const FleetSection: React.FC<FleetSectionProps> = ({ onSelectVehicle, onB
         {/* ========================================================================= */}
         <div id="fleet-self-drive" className="pt-8 mb-20 scroll-mt-24">
           {/* Category Banner / Header */}
-          <div className="p-6 sm:p-8 rounded-3xl bg-gradient-to-r from-[#2B0408] via-[#38060C] to-[#1E0206] border border-[#FACC15]/30 shadow-xl mb-10 flex flex-col md:flex-row md:items-center justify-between gap-6">
+          <div className="p-5 sm:p-8 rounded-3xl bg-gradient-to-r from-[#2B0408] via-[#38060C] to-[#1E0206] border border-[#FACC15]/30 shadow-xl mb-10 flex flex-col md:flex-row md:items-center justify-between gap-6">
             <div className="space-y-2">
               <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#180104] border border-[#FACC15]/40 text-[#FACC15] text-xs font-extrabold uppercase tracking-wide">
                 <MapPin className="w-3.5 h-3.5 text-[#FACC15]" />
-                <span>Self-Drive Fleet</span>
+                <span>{t('catSelfDriveTitle')}</span>
               </div>
-              <h3 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
-                Self-Drive Fleet: <span className="text-[#FACC15]">Karachi Only (Self)</span>
+              <h3 className="text-xl sm:text-3xl font-extrabold text-white tracking-tight">
+                {t('catSelfDriveTitle')} <span className="text-[#FACC15]">{t('catSelfDriveTitleHighlight')}</span>
               </h3>
               <p className="text-xs sm:text-sm text-neutral-300 max-w-2xl leading-relaxed">
-                Clean, fuel-efficient, and dependable automatic sedans and hatchbacks for self-drive. Strictly available within Karachi municipal limits for verified clients with valid CNIC and Driving License.
+                {t('catSelfDriveDesc')}
               </p>
             </div>
 
             <div className="flex items-center gap-3 shrink-0">
               <span className="px-3.5 py-1.5 rounded-xl bg-[#140103] border border-[#FACC15]/30 text-amber-200 text-xs font-bold font-mono">
-                {SELF_DRIVE_VEHICLES.length} Self-Drive Models
+                {t('catSelfDriveCount')}
               </span>
             </div>
           </div>
@@ -151,27 +154,27 @@ export const FleetSection: React.FC<FleetSectionProps> = ({ onSelectVehicle, onB
         <div className="w-full h-px bg-gradient-to-r from-transparent via-[#FACC15]/30 to-transparent my-16" />
 
         {/* ========================================================================= */}
-        {/* CATEGORY 3: BUSES & COASTERS - WITH DRIVER (INTERCITY & NATIONWIDE)      */}
+        {/* CATEGORY 3: BUSES & COASTERS - WITH DRIVER (ALL PAKISTAN)                */}
         {/* ========================================================================= */}
         <div id="fleet-buses" className="pt-8 mb-14 scroll-mt-24">
           {/* Category Banner / Header */}
-          <div className="p-6 sm:p-8 rounded-3xl bg-gradient-to-r from-[#2B0408] via-[#38060C] to-[#1E0206] border border-[#FACC15]/30 shadow-xl mb-10 flex flex-col md:flex-row md:items-center justify-between gap-6">
+          <div className="p-5 sm:p-8 rounded-3xl bg-gradient-to-r from-[#2B0408] via-[#38060C] to-[#1E0206] border border-[#FACC15]/30 shadow-xl mb-10 flex flex-col md:flex-row md:items-center justify-between gap-6">
             <div className="space-y-2">
               <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#180104] border border-[#FACC15]/40 text-[#FACC15] text-xs font-extrabold uppercase tracking-wide">
                 <Users className="w-3.5 h-3.5 text-[#FACC15]" />
-                <span>Buses &amp; Coasters</span>
+                <span>{t('catBusesTitle')}</span>
               </div>
-              <h3 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
-                Buses &amp; Coasters: <span className="text-[#FACC15]">With Driver (Intercity &amp; Nationwide)</span>
+              <h3 className="text-xl sm:text-3xl font-extrabold text-white tracking-tight">
+                {t('catBusesTitle')} <span className="text-[#FACC15]">{t('catBusesTitleHighlight')}</span>
               </h3>
               <p className="text-xs sm:text-sm text-neutral-300 max-w-2xl leading-relaxed">
-                Spacious executive Coasters, Toyota Grand Cabin Hiace vans, and luxury touring coaches (55 &amp; 62 seaters). Operated by seasoned long-route drivers for weddings, corporate tours, and group travel throughout Pakistan.
+                {t('catBusesDesc')}
               </p>
             </div>
 
             <div className="flex items-center gap-3 shrink-0">
               <span className="px-3.5 py-1.5 rounded-xl bg-[#140103] border border-[#FACC15]/30 text-amber-200 text-xs font-bold font-mono">
-                {BUS_TRANSPORT_VEHICLES.length} Heavy Group Options
+                {t('catBusesCount')}
               </span>
             </div>
           </div>
@@ -197,11 +200,11 @@ export const FleetSection: React.FC<FleetSectionProps> = ({ onSelectVehicle, onB
             </div>
             <div>
               <h4 className="text-base font-bold text-white flex items-center gap-2">
-                <span>Looking for specific models or custom durations?</span>
-                <span className="text-xs px-2 py-0.5 rounded bg-[#FACC15] text-black font-extrabold">Amount on Call</span>
+                <span>{t('customBoxTitle')}</span>
+                <span className="text-xs px-2 py-0.5 rounded bg-[#FACC15] text-black font-extrabold amount-on-call-price">{t('amountOnCall')}</span>
               </h4>
               <p className="text-xs text-neutral-300 mt-1 max-w-2xl leading-relaxed">
-                Rates depend on trip duration, route (Karachi city vs outstation), driver allowance, fuel packages, and season. Call our 24/7 desk or message us on WhatsApp for an immediate guaranteed quote.
+                {t('customBoxDesc')}
               </p>
             </div>
           </div>
@@ -211,7 +214,7 @@ export const FleetSection: React.FC<FleetSectionProps> = ({ onSelectVehicle, onB
               href={`tel:${COMPANY_INFO.phone}`}
               className="flex-1 sm:flex-none px-5 py-2.5 rounded-xl bg-[#1C0205] border border-[#FACC15]/40 text-white text-xs font-bold hover:bg-[#2F0409] transition-all text-center"
             >
-              Call {COMPANY_INFO.phoneDisplay}
+              {t('callNowBtn')} {COMPANY_INFO.phoneDisplay}
             </a>
             <a
               href={`https://wa.me/${COMPANY_INFO.whatsappClean}?text=${encodeURIComponent('Hello Al Saif Transport, I want to inquire about custom vehicle booking and pricing.')}`}
@@ -219,7 +222,7 @@ export const FleetSection: React.FC<FleetSectionProps> = ({ onSelectVehicle, onB
               rel="noopener noreferrer"
               className="flex-1 sm:flex-none px-5 py-2.5 rounded-xl bg-[#25D366] text-black text-xs font-extrabold hover:bg-[#20BA5A] transition-all text-center shadow-[0_4px_15px_rgba(37,211,102,0.4)]"
             >
-              WhatsApp Us
+              {t('whatsappUs')}
             </a>
           </div>
         </div>

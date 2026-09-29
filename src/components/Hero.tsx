@@ -1,6 +1,7 @@
 import React from 'react';
 import { ShieldCheck, MapPin } from 'lucide-react';
 import { showroomBg } from '../assets/images';
+import { useLanguage } from '../context/LanguageContext';
 
 interface HeroProps {
   onExploreClick?: () => void;
@@ -8,6 +9,7 @@ interface HeroProps {
 }
 
 export const Hero: React.FC<HeroProps> = () => {
+  const { t, isUrdu } = useLanguage();
   return (
     <section
       id="hero"
@@ -55,33 +57,33 @@ export const Hero: React.FC<HeroProps> = () => {
           {/* Top Badge: Al Saif Transport & Rent A Car */}
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#3B0409]/85 border border-[#FACC15]/40 shadow-xl backdrop-blur-md animate-in fade-in slide-in-from-bottom-3 duration-500">
             <span className="w-2 h-2 rounded-full bg-[#FACC15] animate-pulse" />
-            <span className="text-xs sm:text-sm font-bold text-[#FACC15] tracking-wider uppercase">
-              Al Saif Transport &amp; Rent A Car
+            <span className="text-xs sm:text-sm font-bold text-[#FACC15] tracking-wider uppercase font-arabic">
+              {t('brandName')}
             </span>
           </div>
 
           {/* Main Headline: Modern, Large, Clean Plus Jakarta Sans, Center Aligned */}
-          <h1 className="text-4xl sm:text-6xl lg:text-7xl font-extrabold text-white tracking-tight leading-[1.08] text-balance animate-in fade-in slide-in-from-bottom-4 duration-700">
-            Luxury Travel.{' '}
+          <h1 className="text-3xl sm:text-6xl lg:text-7xl font-extrabold text-white tracking-tight leading-[1.15] text-balance animate-in fade-in slide-in-from-bottom-4 duration-700 px-1">
+            {t('heroTitlePrefix')}{' '}
             <span className="block sm:inline bg-gradient-to-r from-[#FFFBE8] via-[#FACC15] to-[#EAB308] bg-clip-text text-transparent">
-              Professional Service.
+              {t('heroTitleHighlight')}
             </span>
           </h1>
 
           {/* Supporting Text: Center Aligned */}
-          <p className="text-base sm:text-lg lg:text-xl text-neutral-200 font-normal leading-relaxed max-w-2xl mx-auto animate-in fade-in slide-in-from-bottom-4 duration-700 delay-150">
-            Premium chauffeur-driven vehicles across Pakistan and reliable self-drive car rentals in Karachi. Transparent service with immediate phone &amp; WhatsApp dispatch.
+          <p className="text-sm sm:text-lg lg:text-xl text-neutral-200 font-normal leading-relaxed max-w-2xl mx-auto animate-in fade-in slide-in-from-bottom-4 duration-700 delay-150 px-1">
+            {t('heroSubtitle')}
           </p>
 
-          {/* Service Scope Badges: Centered */}
-          <div className="flex flex-wrap items-center justify-center gap-3 pt-1 text-xs sm:text-sm text-neutral-200 animate-in fade-in slide-in-from-bottom-4 duration-700 delay-200">
-            <div className="flex items-center gap-2 px-3.5 py-2 rounded-xl bg-black/60 border border-[#FACC15]/30 text-white backdrop-blur-md shadow-sm">
-              <ShieldCheck className="w-4 h-4 text-[#FACC15]" />
-              <span className="font-semibold">With Driver — All Pakistan</span>
+          {/* Service Scope Badges: Centered & stacked on mobile */}
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-2.5 sm:gap-3 pt-1 text-xs sm:text-sm text-neutral-200 animate-in fade-in slide-in-from-bottom-4 duration-700 delay-200 w-full sm:w-auto">
+            <div className="w-full sm:w-auto flex items-center justify-center gap-2 px-3.5 py-2 rounded-xl bg-black/60 border border-[#FACC15]/30 text-white backdrop-blur-md shadow-sm">
+              <ShieldCheck className="w-4 h-4 text-[#FACC15] shrink-0" />
+              <span className="font-semibold text-center">{t('badgeLuxuryChauffeur')} — {t('badgeLuxuryChauffeurSub')}</span>
             </div>
-            <div className="flex items-center gap-2 px-3.5 py-2 rounded-xl bg-black/60 border border-[#FACC15]/30 text-white backdrop-blur-md shadow-sm">
-              <MapPin className="w-4 h-4 text-[#FACC15]" />
-              <span className="font-semibold">Self Drive — Karachi Only</span>
+            <div className="w-full sm:w-auto flex items-center justify-center gap-2 px-3.5 py-2 rounded-xl bg-black/60 border border-[#FACC15]/30 text-white backdrop-blur-md shadow-sm">
+              <MapPin className="w-4 h-4 text-[#FACC15] shrink-0" />
+              <span className="font-semibold text-center">{t('badgeSelfDrive')} — {t('badgeSelfDriveSub')}</span>
             </div>
           </div>
         </div>

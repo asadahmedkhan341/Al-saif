@@ -71,7 +71,7 @@ export const Loader: React.FC<LoaderProps> = ({ onFinish }) => {
       </div>
 
       {/* Cinematic Vehicle Animation Area */}
-      <div className="relative w-full max-w-md h-36 flex flex-col items-center justify-end px-4">
+      <div className="relative w-full max-w-md h-36 flex flex-col items-center justify-end px-2 sm:px-4 scale-[0.85] sm:scale-100 origin-bottom transition-transform">
         {/* Headlight beam streaking forward to the right in warm gold */}
         <div className="absolute right-12 bottom-9 w-48 h-14 bg-gradient-to-r from-[#FFFBE8]/50 via-[#FACC15]/20 to-transparent blur-sm transform -rotate-2 pointer-events-none animate-headlight origin-left" />
 
@@ -213,12 +213,12 @@ export const Loader: React.FC<LoaderProps> = ({ onFinish }) => {
       </div>
 
       {/* Service Rule Badges at Bottom */}
-      <div className="absolute bottom-5 text-center text-[11px] text-amber-100/60 tracking-wider">
+      <div className="absolute bottom-5 text-center text-[11px] text-amber-100/60 tracking-wider px-4 max-w-full flex flex-wrap justify-center items-center gap-1.5">
         <span className="text-[#FACC15]">With Driver: All Pakistan</span>
-        <span className="mx-2 text-red-500/60">·</span>
+        <span className="text-red-500/60">·</span>
         <span className="text-white">Self Drive: Karachi Only</span>
-        <span className="mx-2 text-red-500/60">·</span>
-        <span className="text-[#FACC15]">Amount on Call</span>
+        <span className="text-red-500/60">·</span>
+        <span className="text-[#FACC15] amount-on-call-price">Amount on Call</span>
       </div>
     </div>
   );
