@@ -354,9 +354,13 @@ const LanguageContext = createContext<LanguageContextType | undefined>(undefined
 export const LanguageProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   const [lang, setLangState] = useState<Language>(() => {
     if (typeof window !== 'undefined') {
-      const saved = localStorage.getItem('alsaif_lang');
-      if (saved === 'ur' || saved === 'en') {
-        return saved;
+      try {
+        const saved = localStorage.getItem('alsaif_lang');
+        if (saved === 'ur' || saved === 'en') {
+          return saved;
+        }
+      } catch {
+        // Fallback gracefully if localStorage is restricted
       }
     }
     return 'en';
@@ -365,7 +369,11 @@ export const LanguageProvider: React.FC<{ children: ReactNode }> = ({ children }
   const setLang = (newLang: Language) => {
     setLangState(newLang);
     if (typeof window !== 'undefined') {
-      localStorage.setItem('alsaif_lang', newLang);
+      try {
+        localStorage.setItem('alsaif_lang', newLang);
+      } catch {
+        // Ignore quota/security errors
+      }
     }
   };
 

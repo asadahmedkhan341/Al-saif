@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <rect width="64" height="64" rx="14" fill="#2A0205"/>
+  <rect x="2" y="2" width="60" height="60" rx="12" fill="none" stroke="#FACC15" stroke-width="2"/>
+  <!-- Curved Arabian Scimitar / Saif in Gold -->
+  <path d="M16 48 C20 40, 28 32, 48 18 C46 25, 42 36, 26 44 Z" fill="#FACC15"/>
+  <path d="M14 46 L20 52 L22 50 L16 44 Z" fill="#EAB308"/>
+  <circle cx="15" cy="51" r="2.5" fill="#FACC15"/>
+  <!-- Complementary counter-blade -->
+  <path d="M48 48 C44 40, 36 32, 16 18 C18 25, 22 36, 38 44 Z" fill="#FDE047" opacity="0.6"/>
+</svg>

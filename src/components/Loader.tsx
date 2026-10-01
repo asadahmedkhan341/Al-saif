@@ -8,12 +8,18 @@ interface LoaderProps {
 export const Loader: React.FC<LoaderProps> = ({ onFinish }) => {
   const [progress, setProgress] = useState(0);
   const [isFading, setIsFading] = useState(false);
+  const onFinishRef = React.useRef(onFinish);
+  onFinishRef.current = onFinish;
 
   useEffect(() => {
-    // Check if user prefers reduced motion
-    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    // Safely check if user prefers reduced motion
+    const prefersReducedMotion =
+      typeof window !== 'undefined' &&
+      typeof window.matchMedia === 'function' &&
+      window.matchMedia('(prefers-reduced-motion: reduce)')?.matches;
+
     if (prefersReducedMotion) {
-      onFinish();
+      onFinishRef.current();
       return;
     }
 
@@ -21,28 +27,40 @@ export const Loader: React.FC<LoaderProps> = ({ onFinish }) => {
     const intervalTime = 25;
     const increment = 100 / (duration / intervalTime);
 
+    // Hard fallback timeout in case browser throttles background tab intervals
+    const safetyTimeout = setTimeout(() => {
+      setIsFading(true);
+      setTimeout(() => {
+        onFinishRef.current();
+      }, 200);
+    }, 3200);
+
     const timer = setInterval(() => {
       setProgress((prev) => {
         const next = prev + increment;
         if (next >= 100) {
           clearInterval(timer);
+          clearTimeout(safetyTimeout);
           setIsFading(true);
           setTimeout(() => {
-            onFinish();
-          }, 400); // smooth exit
+            onFinishRef.current();
+          }, 350); // smooth exit
           return 100;
         }
         return next;
       });
     }, intervalTime);
 
-    return () => clearInterval(timer);
-  }, [onFinish]);
+    return () => {
+      clearInterval(timer);
+      clearTimeout(safetyTimeout);
+    };
+  }, []);
 
   const handleSkip = () => {
     setIsFading(true);
     setTimeout(() => {
-      onFinish();
+      onFinishRef.current();
     }, 150);
   };
 

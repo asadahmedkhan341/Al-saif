@@ -1,8 +1,10 @@
 // Helper to construct public image URLs respecting Vite's base path
 export const getFleetImageUrl = (folder: string, filename: string): string => {
-  const base = import.meta.env.BASE_URL.endsWith('/')
-    ? import.meta.env.BASE_URL
-    : `${import.meta.env.BASE_URL}/`;
+  const rawBase =
+    typeof import.meta !== 'undefined' && import.meta.env && typeof import.meta.env.BASE_URL === 'string'
+      ? import.meta.env.BASE_URL
+      : '/';
+  const base = rawBase.endsWith('/') ? rawBase : `${rawBase}/`;
   return encodeURI(`${base}images/${folder}/${filename}`);
 };
 
