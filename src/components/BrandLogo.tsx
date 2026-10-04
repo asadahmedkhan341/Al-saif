@@ -55,20 +55,43 @@ export const BrandLogo: React.FC<BrandLogoProps> = ({
     </svg>
   );
 
-  // Arabic Calligraphy "السيف" in Vibrant Metallic Gold as shown in the brochure
+  // SVG text element with proper RTL Arabic rendering of "السيف" in Vibrant Metallic Gold
   const ArabicScript = () => (
     <div className="flex items-center justify-center -mt-2 sm:-mt-3 select-none" dir="rtl">
-      <span
-        dir="rtl"
-        className="font-arabic font-extrabold tracking-normal text-4xl sm:text-5xl text-[#FACC15] drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)] filter"
-        style={{
-          fontFamily: "'Amiri', 'Noto Naskh Arabic', serif",
-          textShadow: '0 2px 6px rgba(0,0,0,0.9), 0 0 18px rgba(250,204,21,0.5)',
-          WebkitTextStroke: '0.45px #CA8A04',
-        }}
+      <svg
+        viewBox="0 0 200 56"
+        className="w-44 sm:w-56 h-12 sm:h-14 overflow-visible"
+        xmlns="http://www.w3.org/2000/svg"
+        aria-label="السيف"
       >
-        السيف
-      </span>
+        <defs>
+          <filter id="arabicGoldGlowFull" x="-20%" y="-20%" width="140%" height="140%">
+            <feDropShadow dx="0" dy="2" stdDeviation="3" floodColor="#000000" floodOpacity="0.8" />
+            <feDropShadow dx="0" dy="0" stdDeviation="6" floodColor="#CA8A04" floodOpacity="0.5" />
+          </filter>
+        </defs>
+        <text
+          x="50%"
+          y="42"
+          textAnchor="middle"
+          direction="rtl"
+          unicodeBidi="bidi-override"
+          xmlLang="ar"
+          fill="#FACC15"
+          stroke="#CA8A04"
+          strokeWidth="0.45"
+          filter="url(#arabicGoldGlowFull)"
+          style={{
+            fontFamily: "'Noto Naskh Arabic', 'Noto Sans Arabic', 'Amiri', serif",
+            fontWeight: 800,
+            fontSize: '44px',
+            direction: 'rtl',
+            letterSpacing: '0px',
+          }}
+        >
+          السيف
+        </text>
+      </svg>
     </div>
   );
 
@@ -78,7 +101,31 @@ export const BrandLogo: React.FC<BrandLogoProps> = ({
         <div className="w-24">
           <CarEmblem />
         </div>
-        <span dir="rtl" className="font-arabic font-bold text-2xl text-[#FACC15] -mt-1.5 tracking-normal">السيف</span>
+        <svg
+          viewBox="0 0 120 32"
+          className="w-20 h-6 -mt-1 overflow-visible"
+          xmlns="http://www.w3.org/2000/svg"
+          aria-label="السيف"
+        >
+          <text
+            x="50%"
+            y="24"
+            textAnchor="middle"
+            direction="rtl"
+            unicodeBidi="bidi-override"
+            xmlLang="ar"
+            fill="#FACC15"
+            style={{
+              fontFamily: "'Noto Naskh Arabic', 'Noto Sans Arabic', 'Amiri', serif",
+              fontWeight: 800,
+              fontSize: '22px',
+              direction: 'rtl',
+              letterSpacing: '0px',
+            }}
+          >
+            السيف
+          </text>
+        </svg>
       </div>
     );
   }
@@ -91,17 +138,40 @@ export const BrandLogo: React.FC<BrandLogoProps> = ({
           <div className="w-28 sm:w-36 h-auto transition-transform duration-200 group-hover:scale-105 filter drop-shadow-[0_2px_8px_rgba(0,0,0,0.7)]">
             <CarEmblem />
           </div>
-          <span
-            dir="rtl"
-            className="font-arabic font-extrabold text-base sm:text-lg md:text-xl text-[#FACC15] leading-none -mt-1 sm:-mt-1.5 tracking-normal drop-shadow-[0_2px_6px_rgba(0,0,0,0.9)]"
-            style={{
-              fontFamily: "'Amiri', 'Noto Naskh Arabic', serif",
-              textShadow: '0 2px 6px rgba(0,0,0,0.9), 0 0 14px rgba(250,204,21,0.6)',
-              WebkitTextStroke: '0.35px #CA8A04',
-            }}
+          <svg
+            viewBox="0 0 140 32"
+            className="w-28 sm:w-36 h-6 sm:h-7 -mt-1 sm:-mt-1.5 overflow-visible"
+            xmlns="http://www.w3.org/2000/svg"
+            aria-label="السيف"
           >
-            السيف
-          </span>
+            <defs>
+              <filter id="arabicGoldGlowHoriz" x="-20%" y="-20%" width="140%" height="140%">
+                <feDropShadow dx="0" dy="1.5" stdDeviation="2" floodColor="#000000" floodOpacity="0.9" />
+                <feDropShadow dx="0" dy="0" stdDeviation="4" floodColor="#CA8A04" floodOpacity="0.5" />
+              </filter>
+            </defs>
+            <text
+              x="50%"
+              y="24"
+              textAnchor="middle"
+              direction="rtl"
+              unicodeBidi="bidi-override"
+              xmlLang="ar"
+              fill="#FACC15"
+              stroke="#CA8A04"
+              strokeWidth="0.35"
+              filter="url(#arabicGoldGlowHoriz)"
+              style={{
+                fontFamily: "'Noto Naskh Arabic', 'Noto Sans Arabic', 'Amiri', serif",
+                fontWeight: 800,
+                fontSize: '22px',
+                direction: 'rtl',
+                letterSpacing: '0px',
+              }}
+            >
+              السيف
+            </text>
+          </svg>
         </div>
       </div>
     );
