@@ -59,14 +59,15 @@ export const BrandLogo: React.FC<BrandLogoProps> = ({
   const ArabicScript = () => (
     <div className="flex items-center justify-center -mt-2 sm:-mt-3 select-none" dir="rtl">
       <span
-        className="font-arabic font-extrabold tracking-tight text-4xl sm:text-5xl text-[#FACC15] drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)] filter"
+        dir="rtl"
+        className="font-arabic font-extrabold tracking-normal text-4xl sm:text-5xl text-[#FACC15] drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)] filter"
         style={{
           fontFamily: "'Amiri', 'Noto Naskh Arabic', serif",
           textShadow: '0 2px 6px rgba(0,0,0,0.9), 0 0 18px rgba(250,204,21,0.5)',
           WebkitTextStroke: '0.45px #CA8A04',
         }}
       >
-        الســيـف
+        السيف
       </span>
     </div>
   );
@@ -77,7 +78,7 @@ export const BrandLogo: React.FC<BrandLogoProps> = ({
         <div className="w-24">
           <CarEmblem />
         </div>
-        <span className="font-arabic font-bold text-2xl text-[#FACC15] -mt-1.5">السيف</span>
+        <span dir="rtl" className="font-arabic font-bold text-2xl text-[#FACC15] -mt-1.5 tracking-normal">السيف</span>
       </div>
     );
   }
@@ -86,11 +87,12 @@ export const BrandLogo: React.FC<BrandLogoProps> = ({
     return (
       <div className={`flex items-center ${className}`}>
         {/* Transparent Brand Logo: Aerodynamic Car Silhouette + Gold Arabic Calligraphy 'السيف' */}
-        <div className="relative flex flex-col items-center justify-center bg-transparent group select-none">
+        <div className="relative flex flex-col items-center justify-center bg-transparent group select-none" dir="rtl">
           <div className="w-28 sm:w-36 h-auto transition-transform duration-200 group-hover:scale-105 filter drop-shadow-[0_2px_8px_rgba(0,0,0,0.7)]">
             <CarEmblem />
           </div>
           <span
+            dir="rtl"
             className="font-arabic font-extrabold text-base sm:text-lg md:text-xl text-[#FACC15] leading-none -mt-1 sm:-mt-1.5 tracking-normal drop-shadow-[0_2px_6px_rgba(0,0,0,0.9)]"
             style={{
               fontFamily: "'Amiri', 'Noto Naskh Arabic', serif",
@@ -98,7 +100,7 @@ export const BrandLogo: React.FC<BrandLogoProps> = ({
               WebkitTextStroke: '0.35px #CA8A04',
             }}
           >
-            الســيـف
+            السيف
           </span>
         </div>
       </div>
